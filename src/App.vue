@@ -3,19 +3,20 @@
     <div class="app">
       <NavigationF />
       <router-view />
+        <Footer/>
       <!-- <Footer v-if="!navigation" /> -->
     </div>
   </div>
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld.vue";
+import Footer from "./components/Footer.vue";
 import NavigationF from "./components/Navigation";
 
 export default {
   name: "App",
   components: {
-    NavigationF,
+    NavigationF,Footer
   },
 };
 </script>

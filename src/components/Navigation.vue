@@ -7,51 +7,106 @@
         <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
           >Create Post</router-link
         > -->
-        <div class="nav-links">
-<ul>
-  <router-link  class="links" to="#"> Home</router-link>
-   <router-link  class="links" to="#"> Blogs</router-link>
-    <router-link  class="links" to="#">Create Post</router-link>
-     <router-link  class="links" to="#">Login/Register</router-link>
-</ul>
-
-
-        </div>
       </div>
-      <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
+        <div class="nav-links">
+<ul v-show="!mobile">
+  <router-link  class="link" to="#"> Home</router-link>
+   <router-link  class="link" to="#"> Blogs</router-link>
+    <router-link  class="link" to="#">Create Post</router-link>
+     <router-link  class="link" to="#">Login/Register</router-link>
+</ul>
+        </div>
+    </nav>
+  
+
+    <div  @click="toggleMobileNav" class="menu-icon" v-show="mobile" >   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+</svg></div>
+    
       <transition name="mobile-nav">
-        <ul class="mobile-nav" v-show="mobileNav">
+        <ul class="mobile-nav" v-show="mobileNav" >
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
           <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
             >Create Post</router-link
           >
-          <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
+          <router-link  class="link" :to="{ name: 'Login' }"
             >Login/Register</router-link
           >
         </ul>
       </transition>
-    </nav>
   </header>
 </template>
 
 <script>
-import menuIcon from "../assets/Icons/bars-regular.svg";
+// import menuIcon from "../assets/Icons/edit-regular.svg";
 export default {
   name: "NavigationF",
   components: {
-    menuIcon,
+    // menuIcon,
+  },
+   data() {
+    return {
+      profileMenu: null,
+      mobile: null,
+      mobileNav: null,
+      windownWidth: null,
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
+  },
+  methods: {
+    checkScreen() {
+      this.windownWidth = window.innerWidth;
+      if (this.windownWidth <= 750) {
+        this.mobile = true;
+        return;
+      }
+      this.mobile = false;
+      this.mobileNav = false;
+      return;
+    },
+
+    toggleMobileNav() {
+      this.mobileNav = !this.mobileNav;
+    },
+
+    toggleProfileMenu(e) {
+      if (e.target === this.$refs.profile) {
+        this.profileMenu = !this.profileMenu;
+      }
+    },
+
+    // signOut() {
+    //   firebase.auth().signOut();
+    //   window.location.reload();
+    // },
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+    admin() {
+      return this.$store.state.profileAdmin;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+
+
 header {
   background-color: #fff;
   padding: 0 25px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
+
+
 
   .link {
     font-weight: 500;
@@ -191,10 +246,10 @@ header {
   .menu-icon {
     cursor: pointer;
     position: absolute;
-    top: 32px;
+    top: 25px;
     right: 25px;
     height: 25px;
-    width: auto;
+    width: 30px;
   }
 
   .mobile-nav {
