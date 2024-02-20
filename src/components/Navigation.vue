@@ -76,7 +76,7 @@
 <script>
 // import menuIcon from "../assets/Icons/edit-regular.svg";
 export default {
-  name: "NavigationF",
+  name: "NavigationComp",
   components: {
     // menuIcon,
   },

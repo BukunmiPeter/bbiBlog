@@ -1,24 +1,23 @@
 <template>
   <div class="app-wrapper">
-    <div class="app">
-      <NavigationF />
+    <div class="app" v-if="this.$store.state.postLoaded">
+      <Navigation v-if="!navigation" />
       <router-view />
-        <Footer/>
-      <!-- <Footer v-if="!navigation" /> -->
+      <Footer v-if="!navigation" />
     </div>
   </div>
 </template>
 
 <script>
 import Footer from "./components/Footer.vue";
-import NavigationF from "./components/Navigation";
+import Navigation from "./components/Navigation";
 import firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
   name: "App",
   components: {
-    NavigationF,Footer},
+    Navigation,Footer},
       data() {
     return {
       navigation: null,
