@@ -8,7 +8,7 @@
         <Delete class="delete" />
       </div>
     </div>
-    <img :src="post.blogCoverPhoto" alt="" />
+    <img  :src="require(`../assets/blogPhotos/coding.jpg`)" alt="" />
     <div class="info">
       <h4>{{ post.blogTitle }}</h4>
       <h6>Posted on: {{ new Date(post.blogDate).toLocaleString("en-us", { dateStyle: "long" }) }}</h6>
