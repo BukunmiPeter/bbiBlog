@@ -21,14 +21,14 @@
 
 <script>
 import BlogPost from "../components/BlogPost";
-// import BlogCard from "../components/BlogCard";
+import BlogCard from "../components/BlogCard";
 import Arrow from "../assets/Icons/arrow-right-light.svg";
 export default {
   name: "HomePage",
   components: { BlogPost,
-  //  BlogCard,
+  BlogCard,
    Arrow },
-  data() {
+  data() { 
     return {
       welcomeScreen: {
         title: "Welcome!",
