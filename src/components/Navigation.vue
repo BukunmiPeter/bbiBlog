@@ -3,37 +3,72 @@
     <nav class="container">
       <div class="branding">
         <router-link class="header" :to="{ name: 'Home' }">BBINOVATE</router-link>
-        <!-- <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-        <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
-          >Create Post</router-link
-        > -->
+   
       </div>
         <div class="nav-links">
 <ul v-show="!mobile">
   <router-link  class="link" :to="{name: 'Home'}"> Home</router-link>
    <router-link  class="link" :to="{name: 'Blogs'}"> Blogs</router-link>
-    <router-link  class="link" to="#">Create Post</router-link>
-     <router-link  class="link" to="#">Login/Register</router-link>
+    <router-link  class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
+     <router-link  v-if="!user" class="link" :to="{ name: 'Login' }">Login/Register</router-link>
 </ul>
+  <div
+          v-if="user"
+          :class="{ 'mobile-user-menu': mobile }"
+          @click="toggleProfileMenu"
+          class="profile"
+          ref="profile"
+        >
+          <span>{{ this.$store.state.profileInitials }}</span>
+          <div v-show="profileMenu" class="profile-menu">
+            <div class="info">
+              <p class="initials">{{ this.$store.state.profileInitials }}</p>
+              <div class="right">
+                <p>
+                  {{ this.$store.state.profileFirstName }}
+                  {{ this.$store.state.profileLastName }}
+                </p>
+                <p>{{ this.$store.state.profileUsername }}</p>
+                <p>{{ this.$store.state.profileEmail }}</p>
+              </div>
+            </div>
+            <div class="options">
+              <div class="option">
+                <router-link class="option" :to="{ name: 'Profile' }">
+                  <userIcon class="icon" />
+                  <p>Profile</p>
+                </router-link>
+              </div>
+              <div v-if="admin" class="option">
+                <router-link class="option" :to="{ name: 'Admin' }">
+                  <adminIcon class="icon" />
+                  <p>Admin</p>
+                </router-link>
+              </div>
+              <div @click="signOut" class="option">
+                <signOutIcon class="icon" />
+                <p>Sign Out</p>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
     </nav>
-  
-
     <div  @click="toggleMobileNav" class="menu-icon" v-show="mobile" >   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg></div>
     
       <transition name="mobile-nav">
-        <ul class="mobile-nav" v-show="mobileNav" >
-          <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-          <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-          <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
-            >Create Post</router-link
-          >
-          <router-link  class="link" :to="{ name: 'Login' }"
-            >Login/Register</router-link
-          >
-        </ul>
+  <ul class="mobile-nav" v-show="mobileNav">
+        <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
+        <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
+        <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
+          >Create Post</router-link
+        >
+        <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
+          >Login/Register</router-link
+        >
+      </ul>
       </transition>
   </header>
 </template>
