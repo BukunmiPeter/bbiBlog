@@ -18,6 +18,7 @@
         </ul>
   <div
           v-if="user"
+          v-show="!mobile"
           :class="{ ' -user-menu': mobile }"
           @click="toggleProfileMenu"
           class="profile"
@@ -66,9 +67,21 @@
       <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-        <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
+           <router-link class="link" v-if="user"  :to="{ name: 'Profile' }">
+             
+                  Profile
+                </router-link>
+                  <router-link v-if="admin" class="option" :to="{ name: 'Admin' }">
+                 
+                  Admin
+                </router-link>
+        <router-link  v-if="admin" class="link" :to="{ name: 'CreatePost' }"
           >Create Post</router-link
         >
+         <div @click="signOut" class="link"  v-if="user" >
+               
+                Sign Out
+              </div>
         <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
           >Login/Register</router-link
         >
