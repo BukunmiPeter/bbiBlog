@@ -16,13 +16,13 @@ const store = new Vuex.Store({
 state: {
     blogPosts: [
       {
-        blogTitle:"Blog Card #1", blogCoverPhoto:image2, blogDate:"May 1, 2021", blogHTML:"amazing" },    {
+        blogID:1, blogTitle:"Blog Card #1", blogCoverPhoto:image2, blogDate:"May 1, 2021", blogHTML:"amazing" },    {  blogID:2,
         blogTitle:"Blog Card #2", blogCoverPhoto:image1, blogDate:"May 1, 2021",blogHTML:"amazing" },    
-        {blogTitle:"Blog Card #3",blogCoverPhoto:stock1, blogDate:"May 1, 2021",blogHTML:"amazing" },    {
-        blogTitle:"Blog Card #4", blogCoverPhoto:stock2, blogDate:"May 1, 2021" ,blogHTML:"amazing"},
-        { blogTitle:"Blog Card #3", blogCoverPhoto:stock3, blogDate:"May 1, 2021",blogHTML:"amazing" }, 
+        {  blogID:3, blogTitle:"Blog Card #3",blogCoverPhoto:stock1, blogDate:"May 1, 2021",blogHTML:"amazing" },    {
+         blogID:4,blogTitle:"Blog Card #4", blogCoverPhoto:stock2, blogDate:"May 1, 2021" ,blogHTML:"amazing"},
+        { blogID:5, blogTitle:"Blog Card #3", blogCoverPhoto:stock3, blogDate:"May 1, 2021",blogHTML:"amazing" }, 
             {
-        blogTitle:"Blog Card #4", blogCoverPhoto:stock4, blogDate:"May 1, 2021" ,blogHTML:"amazing"}
+        blogID:6, blogTitle:"Blog Card #4", blogCoverPhoto:stock4, blogDate:"May 1, 2021" ,blogHTML:"amazing"}
     ],
     postLoaded: null,
     blogHTML: "Write your blog title here...",
