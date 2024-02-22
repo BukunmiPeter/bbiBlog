@@ -5,7 +5,7 @@
         Don't have an account?
         <router-link class="router-link" :to="{ name: 'Register' }">Register</router-link>
       </p>
-      <h2>Login to FireBlogs</h2>
+      <h2>Login to BBInnovate</h2>
       <div class="inputs">
         <div class="input">
           <input type="text" placeholder="Email" v-model="email" />
@@ -58,6 +58,7 @@ export default {
           console.log(firebase.auth().currentUser.uid);
         })
         .catch((err) => {
+          console.log("dd",err);
           this.error = true;
           this.errorMsg = err.message;
         });
