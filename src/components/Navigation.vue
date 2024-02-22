@@ -6,12 +6,16 @@
    
       </div>
         <div class="nav-links">
-<ul v-show="!mobile">
-  <router-link  class="link" :to="{name: 'Home'}"> Home</router-link>
-   <router-link  class="link" :to="{name: 'Blogs'}"> Blogs</router-link>
-    <router-link  class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
-     <router-link  v-if="!user" class="link" :to="{ name: 'Login' }">Login/Register</router-link>
-</ul>
+ <ul v-show="!mobile">
+          <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
+          <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
+          <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
+            >Create Post</router-link
+          >
+          <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
+            >Login/Register</router-link
+          >
+        </ul>
   <div
           v-if="user"
           :class="{ 'mobile-user-menu': mobile }"
@@ -57,9 +61,9 @@
     <div  @click="toggleMobileNav" class="menu-icon" v-show="mobile" >   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg></div>
-    
-      <transition name="mobile-nav">
-  <ul class="mobile-nav" v-show="mobileNav">
+        <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
+       <transition name="mobile-nav">
+      <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
         <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
@@ -69,18 +73,25 @@
           >Login/Register</router-link
         >
       </ul>
-      </transition>
+    </transition>
   </header>
 </template>
 
 <script>
-// import menuIcon from "../assets/Icons/edit-regular.svg";
+import menuIcon from "../assets/Icons/bars-regular.svg";
+import userIcon from "../assets/Icons/user-alt-light.svg";
+import adminIcon from "../assets/Icons/user-crown-light.svg";
+import signOutIcon from "../assets/Icons/sign-out-alt-regular.svg";
+import firebase from "firebase/app";
 export default {
   name: "NavigationComp",
   components: {
-    // menuIcon,
+ menuIcon,
+    userIcon,
+    adminIcon,
+    signOutIcon,
   },
-   data() {
+ data() {
     return {
       profileMenu: null,
       mobile: null,
@@ -114,10 +125,10 @@ export default {
       }
     },
 
-    // signOut() {
-    //   firebase.auth().signOut();
-    //   window.location.reload();
-    // },
+    signOut() {
+      firebase.auth().signOut();
+      window.location.reload();
+    },
   },
   computed: {
     user() {
