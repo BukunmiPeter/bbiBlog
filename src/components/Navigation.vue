@@ -246,13 +246,20 @@ header {
               flex: 1;
               margin-left: 24px;
 
+
               p:nth-child(1) {
                 font-size: 14px;
+             
+
               }
 
               p:nth-child(2),
               p:nth-child(3) {
                 font-size: 12px;
+                max-width: 100%;
+                // border:1px solid red;
+                word-wrap: wrap;
+                display:flex;
               }
             }
           }

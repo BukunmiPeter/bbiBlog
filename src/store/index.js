@@ -3,17 +3,26 @@ import Vuex from 'vuex';
 import firebase from "firebase/app";
 import "firebase/auth";
 import db from "../firebase/firebaseInit";
+import image1 from "../assets/blogPhotos/designed-for-everyone.jpg";
+import image2 from "../assets/blogPhotos/beautiful-stories.jpg";
+import stock1 from "../assets/blogCards/stock-1.jpg";
+import stock2 from "../assets/blogCards/stock-2.jpg";
+import stock3 from "../assets/blogCards/stock-3.jpg";
+import stock4 from "../assets/blogCards/stock-4.jpg";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
 state: {
     blogPosts: [
-      // {
-      //   blogTitle:"Blog Card #1", blogCoverPhoto:"stock-1", blogDate:"May 1, 2021" },    {
-      //   blogTitle:"Blog Card #2", blogCoverPhoto:"stock-2", blogDate:"May 1, 2021" },    {
-      //   blogTitle:"Blog Card #3", blogCoverPhoto:"stock-3", blogDate:"May 1, 2021" },    {
-      //   blogTitle:"Blog Card #4", blogCoverPhoto:"stock-4", blogDate:"May 1, 2021" }
+      {
+        blogTitle:"Blog Card #1", blogCoverPhoto:image2, blogDate:"May 1, 2021", blogHTML:"amazing" },    {
+        blogTitle:"Blog Card #2", blogCoverPhoto:image1, blogDate:"May 1, 2021",blogHTML:"amazing" },    
+        {blogTitle:"Blog Card #3",blogCoverPhoto:stock1, blogDate:"May 1, 2021",blogHTML:"amazing" },    {
+        blogTitle:"Blog Card #4", blogCoverPhoto:stock2, blogDate:"May 1, 2021" ,blogHTML:"amazing"},
+        { blogTitle:"Blog Card #3", blogCoverPhoto:stock3, blogDate:"May 1, 2021",blogHTML:"amazing" }, 
+            {
+        blogTitle:"Blog Card #4", blogCoverPhoto:stock4, blogDate:"May 1, 2021" ,blogHTML:"amazing"}
     ],
     postLoaded: null,
     blogHTML: "Write your blog title here...",
