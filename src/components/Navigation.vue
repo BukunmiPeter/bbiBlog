@@ -2,7 +2,7 @@
   <header>
     <nav class="container">
       <div class="branding">
-        <router-link class="header" :to="{ name: 'Home' }">BBINOVATE</router-link>
+        <router-link class="header" :to="{ name: 'Home' }">BBIBlogs</router-link>
    
       </div>
         <div class="nav-links">
@@ -18,7 +18,7 @@
         </ul>
   <div
           v-if="user"
-          :class="{ 'mobile-user-menu': mobile }"
+          :class="{ ' -user-menu': mobile }"
           @click="toggleProfileMenu"
           class="profile"
           ref="profile"
