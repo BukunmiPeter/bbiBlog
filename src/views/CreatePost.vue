@@ -75,7 +75,7 @@ export default {
       docRef.put(file).on(
         "state_changed",
         (snapshot) => {
-          console.log(snapshot);
+          console.log("hello",snapshot);
         },
         (err) => {
           console.log(err);
@@ -94,20 +94,21 @@ export default {
           this.loading = true;
           const storageRef = firebase.storage().ref();
           const docRef = storageRef.child(`documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`);
+          console.log("hello11");
           docRef.put(this.file).on(
             "state_changed",
             (snapshot) => {
-              console.log(snapshot);
+              console.log("hello",snapshot);
             },
             (err) => {
-              console.log(err);
+              console.log("error",err);
               this.loading = false;
             },
             async () => {
               const downloadURL = await docRef.getDownloadURL();
               const timestamp = await Date.now();
               const dataBase = await db.collection("blogPosts").doc();
-
+ console.log("hello",this.blogCoverPhotoName,downloadURL);
               await dataBase.set({
                 blogID: dataBase.id,
                 blogHTML: this.blogHTML,
@@ -230,10 +231,14 @@ export default {
 
   .blog-info {
     display: flex;
+     flex-direction:column;
     margin-bottom: 32px;
-
+    row-gap:20px;
     input:nth-child(1) {
-      min-width: 300px;
+      max-width: 50%;
+          @media (min-width: 900px) {
+  // max-width: 500px;
+    }
     }
 
     input {
@@ -253,6 +258,13 @@ export default {
       margin-left: 16px;
       position: relative;
       display: flex;
+      row-gap:10px;
+  flex-direction:column;
+    
+          @media (min-width: 900px) {
+  flex-direction:row;
+    }
+
 
       input {
         display: none;
@@ -268,6 +280,9 @@ export default {
         margin-left: 16px;
         align-self: center;
       }
+    }
+     @media (min-width: 900px) {
+  flex-direction:row;
     }
   }
 
