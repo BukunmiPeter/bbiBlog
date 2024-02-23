@@ -1,14 +1,13 @@
 module.exports = {
   chainWebpack: (config) => {
-    const svgRule = config.module.rule("svg");
+    const svgRule = config.module.rule('svg');
 
+    // Clear existing rules for SVG
     svgRule.uses.clear();
 
+    // Add vue-svg-inline-loader
     svgRule
-      .use("babel-loader")
-      .loader("babel-loader")
-      .end()
-      .use("vue-svg-loader")
-      .loader("vue-svg-loader");
+      .use('vue-svg-inline-loader')
+      .loader('vue-svg-inline-loader');
   },
 };
