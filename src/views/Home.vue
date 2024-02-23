@@ -33,7 +33,7 @@ export default {
       welcomeScreen: {
         title: "Welcome!",
         blogPost:
-          "Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!",
+          "Welcome to BBIBlogs, where innovation meets code! Explore the art of programming with insights, tips, and inspiration. Let's craft brilliant solutions together.",
         welcomeScreen: true,
         photo: "feel-it",
       },
